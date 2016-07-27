@@ -30,9 +30,9 @@ Apache-2.0 © [Ravindra Kumar](https://github.com/ravidsrk/)
 
 [npm-image]: https://badge.fury.io/js/generator-android-architecture.svg
 [npm-url]: https://npmjs.org/package/generator-android-architecture
-[travis-image]: https://travis-ci.org/androidstarter/generator-android-architecture.svg?branch=master
-[travis-url]: https://travis-ci.org/androidstarter/generator-android-architecture
-[daviddm-image]: https://david-dm.org/androidstarter/generator-android-architecture.svg?theme=shields.io
-[daviddm-url]: https://david-dm.org/androidstarter/generator-android-architecture
-[coveralls-image]: https://coveralls.io/repos/androidstarter/generator-android-architecture/badge.svg
-[coveralls-url]: https://coveralls.io/r/androidstarter/generator-android-architecture
+[travis-image]: https://travis-ci.org/ravidsrk/generator-android-architecture.svg?branch=master
+[travis-url]: https://travis-ci.org/ravidsrk/generator-android-architecture
+[daviddm-image]: https://david-dm.org/ravidsrk/generator-android-architecture.svg?theme=shields.io
+[daviddm-url]: https://david-dm.org/ravidsrk/generator-android-architecture
+[coveralls-image]: https://coveralls.io/repos/ravidsrk/generator-android-architecture/badge.svg
+[coveralls-url]: https://coveralls.io/r/ravidsrk/generator-android-architecture
