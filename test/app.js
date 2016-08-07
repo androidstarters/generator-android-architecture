@@ -28,7 +28,7 @@ describe('generator-android-mvp-starter:app', function () {
     ]);
   });
 
-  it('creates core app files', function () {
+  it('creates core app files for todo-mvp architechture', function () {
     assert.file([
       'app/.gitignore',
       'app/build.gradle',

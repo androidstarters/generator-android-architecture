@@ -36,7 +36,7 @@ module.exports = yeoman.Base.extend({
     }, {
       type: 'list',
       name: 'architecture',
-      message: 'Choose architecture?',
+      message: 'Choose architecture from https://github.com/googlesamples/android-architecture?',
       choices: [{
         name: 'todo-mvp - Basic Model-View-Presenter architecture.',
         value: 'todo-mvp'
