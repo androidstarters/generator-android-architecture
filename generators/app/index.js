@@ -94,10 +94,10 @@ module.exports = yeoman.Base.extend({
 
     this.template(this.props.architecture + '/app/build.gradle', 'app/build.gradle');
     this.template(this.props.architecture + '/app/src/androidTest/java/com/example/android/architecture/blueprints/todoapp', 'app/src/androidTest/java/' + packageDir, this, {});
-    this.template(this.props.architecture + '/app/src/androidTestMock/java/com/example/android/architecture/blueprints/todoapp', 'app/src/commonTest/java/' + packageDir, this, {});
+    this.template(this.props.architecture + '/app/src/androidTestMock/java/com/example/android/architecture/blueprints/todoapp', 'app/src/androidTestMock/java/' + packageDir, this, {});
     this.template(this.props.architecture + '/app/src/main/java/com/example/android/architecture/blueprints/todoapp', 'app/src/main/java/' + packageDir, this, {});
-    this.template(this.props.architecture + '/app/src/mock/java/com/example/android/architecture/blueprints/todoapp', 'app/src/commonTest/java/' + packageDir, this, {});
-    this.template(this.props.architecture + '/app/src/prod/java/com/example/android/architecture/blueprints/todoapp', 'app/src/commonTest/java/' + packageDir, this, {});
+    this.template(this.props.architecture + '/app/src/mock/java/com/example/android/architecture/blueprints/todoapp', 'app/src/mock/java/' + packageDir, this, {});
+    this.template(this.props.architecture + '/app/src/prod/java/com/example/android/architecture/blueprints/todoapp', 'app/src/prod/java/' + packageDir, this, {});
     this.template(this.props.architecture + '/app/src/test/java/com/example/android/architecture/blueprints/todoapp', 'app/src/test/java/' + packageDir, this, {});
     this.template(this.props.architecture + '/app/src/main/AndroidManifest.xml', 'app/src/main/AndroidManifest.xml');
     this.template(this.props.architecture + '/app/src/main/res/layout', 'app/src/main/res/layout', this, {});
