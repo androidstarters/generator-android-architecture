@@ -81,6 +81,7 @@ module.exports = yeoman.Base.extend({
     mkdirp('app/src/main/res');
 
     this.directory(this.props.architecture + '/gradle', 'gradle');
+    this.directory(this.props.architecture + '/app/src/main/res', 'app/src/main/res');
 
     this.copy(this.props.architecture + '/gitignore', '.gitignore');
     this.copy(this.props.architecture + '/build.gradle', 'build.gradle');
@@ -100,6 +101,6 @@ module.exports = yeoman.Base.extend({
     this.template(this.props.architecture + '/app/src/prod/java/com/example/android/architecture/blueprints/todoapp', 'app/src/commonTest/java/' + packageDir, this, {});
     this.template(this.props.architecture + '/app/src/test/java/com/example/android/architecture/blueprints/todoapp', 'app/src/test/java/' + packageDir, this, {});
     this.template(this.props.architecture + '/app/src/main/AndroidManifest.xml', 'app/src/main/AndroidManifest.xml');
-    this.template(this.props.architecture + '/app/src/main/res', 'app/src/main/res', this, {});
+    this.template(this.props.architecture + '/app/src/main/res/layout', 'app/src/main/res/layout', this, {});
   }
 });
