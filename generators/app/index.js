@@ -5,7 +5,7 @@ const mkdirp = require('mkdirp');
 var yosay = require('yosay');
 
 module.exports = yeoman.Base.extend({
-  prompting: function() {
+  prompting: function () {
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the badass ' + chalk.red('generator-android-architecture') + ' generator!'
@@ -16,7 +16,7 @@ module.exports = yeoman.Base.extend({
       message: 'What are you calling your app?',
       store: true,
       default: this.appname,
-      validate: function(input) {
+      validate: function (input) {
         if (/^([a-zA-Z0-9_]*)$/.test(input)) {
           return true;
         }
@@ -25,7 +25,7 @@ module.exports = yeoman.Base.extend({
     }, {
       name: 'package',
       message: 'What package will you be publishing the app under?',
-      validate: function(input) {
+      validate: function (input) {
         if (/^([a-z_]{1}[a-z0-9_]*(\.[a-z_]{1}[a-z0-9_]*)*)$/.test(input)) {
           return true;
         }
@@ -59,7 +59,7 @@ module.exports = yeoman.Base.extend({
       default: 'todo-mvp'
     }];
 
-    return this.prompt(prompts).then(function(props) {
+    return this.prompt(prompts).then(function (props) {
       this.props = props;
       this.props.appPackage = props.package;
       this.appName = props.name;
@@ -69,7 +69,7 @@ module.exports = yeoman.Base.extend({
     }.bind(this));
   },
 
-  writing: function() {
+  writing: function () {
     var packageDir = this.props.package.replace(/\./g, '/');
     mkdirp('app');
     mkdirp('app/src/androidTest/java/' + packageDir);
@@ -78,7 +78,7 @@ module.exports = yeoman.Base.extend({
     mkdirp('app/src/mock/java/' + packageDir);
     mkdirp('app/src/prod/java/' + packageDir);
     mkdirp('app/src/test/java/' + packageDir);
-    
+
     this.directory(this.props.architecture + '/gradle', 'gradle');
 
     this.copy(this.props.architecture + '/gitignore', '.gitignore');
