@@ -13,6 +13,7 @@ npm install -g generator-android-architecture
 Then generate your new project:
 
 ```bash
+mkdir NewApp && cd $_
 yo android-architecture
 ```
 
