@@ -1,6 +1,6 @@
 {
   "name": "generator-android-architecture",
-  "version": "0.1.7",
+  "version": "1.0.0",
   "description": "Yeoman generator for googlesamples android-architecture.",
   "homepage": "https://github.com/ravidsrk/generator-android-architecture",
   "author": {
