@@ -1,12 +1,11 @@
 'use strict';
 
-const renamer = require('renamer');
+
 const rimraf = require('rimraf');
-const async = require('async');
 const path = require('path');
 const mv = require('mv');
 const mkdirp = require('mkdirp');
-const Git = require("nodegit");
+const clone = require("nodegit").Clone;
 const replace = require("replace");
 const filter = require('filter-files');
 const findInFiles = require('find-in-files');
@@ -15,16 +14,16 @@ const Finder = require('fs-finder');
 
 // Clone a given repository into the `./tmp` folder.
 // rimraf.sync(__dirname + '/templates')
-rimraf.sync(__dirname + '/tmp')
+rimraf.sync(__dirname + '/tmp');
 // mkdirp('./templates')
 
-Git.Clone("https://github.com/googlesamples/android-architecture", "./tmp")
+clone("https://github.com/googlesamples/android-architecture", "./tmp")
   .then(function(repo) {
-    checkOutAndCopy(repo,"todo-mvp")
+    checkOutAndCopy(repo,"todo-mvp");
     // checkOutAndCopy(repo,"todo-mvp-loaders");
-    // checkOutAndCopy(repo,"todo-mvp-clean")
-    // checkOutAndCopy(repo,"todo-mvp-dagger") 
-    // checkOutAndCopy(repo,"todo-mvp-contentproviders")
+    // checkOutAndCopy(repo,"todo-mvp-clean");
+    // checkOutAndCopy(repo,"todo-mvp-dagger");
+    // checkOutAndCopy(repo,"todo-mvp-contentproviders");
     // checkOutAndCopy(repo, "todo-databinding");
   })
   .catch(function(err) {
