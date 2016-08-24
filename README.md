@@ -17,6 +17,31 @@ mkdir NewApp && cd $_
 yo android-architecture
 ```
 
+## Example
+```bash
+➜  NewApp yo android-architecture
+
+     _-----_     ╭──────────────────────────╮
+    |       |    │   Welcome to the badass  │
+    |--(o)--|    │ generator-android-archit │
+   `---------´   │     ecture generator!    │
+    ( _´U`_ )    ╰──────────────────────────╯
+    /___A___\   /
+     |  ~  |
+   __'.___.'__
+ ´   `  |° ´ Y `
+
+? What are you calling your app? NewApp
+? What package will you be publishing the app under? in.architecture.sample
+? Choose architecture from https://github.com/googlesamples/android-architecture? (Use arrow keys)
+❯ todo-mvp - Basic Model-View-Presenter architecture.
+  todo-mvp-loaders - Based on todo-mvp, fetches data using Loaders.
+  todo-mvp-databinding - Based on todo-mvp, uses the Data Binding Library.
+  todo-mvp-clean - Based on todo-mvp, uses concepts from Clean Architecture.
+  todo-mvp-dagger - Based on todo-mvp, uses Dagger2 for Dependency Injection
+  todo-mvp-contentproviders - Based on todo-mvp-loaders, fetches data using Loaders and uses Content Providers
+```
+
 ## Getting To Know Yeoman
 
  * Yeoman has a heart of gold.
