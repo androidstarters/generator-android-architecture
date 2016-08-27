@@ -13,9 +13,8 @@ const ncp = require('ncp').ncp;
 const Finder = require('fs-finder');
 
 // Clone a given repository into the `./tmp` folder.
-// rimraf.sync(__dirname + '/templates')
-rimraf.sync(__dirname + '/tmp');
-// mkdirp('./templates')
+rimraf.sync(__dirname + '/templates')
+mkdirp('./templates')
 
 clone("https://github.com/googlesamples/android-architecture", "./tmp")
   .then(function(repo) {
@@ -24,7 +23,7 @@ clone("https://github.com/googlesamples/android-architecture", "./tmp")
     // checkOutAndCopy(repo,"todo-mvp-clean");
     // checkOutAndCopy(repo,"todo-mvp-dagger");
     // checkOutAndCopy(repo,"todo-mvp-contentproviders");
-    // checkOutAndCopy(repo, "todo-databinding");
+    // checkOutAndCopy(repo,"todo-databinding");
   })
   .catch(function(err) {
     console.log(err);
@@ -70,6 +69,8 @@ function checkOutAndCopy(repo, name) {
         if (err) {
           return console.error(err);
         } else {
+          console.log('Removing /tmp!');
+          rimraf.sync(__dirname + '/tmp');
           return console.log('Copying complete!');
         }
       });
