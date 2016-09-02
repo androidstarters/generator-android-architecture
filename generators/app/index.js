@@ -50,10 +50,13 @@ module.exports = yeoman.Base.extend({
         name: 'todo-mvp-clean - Based on todo-mvp, uses concepts from Clean Architecture.',
         value: 'todo-mvp-clean'
       }, {
-        name: 'todo-mvp-dagger - Based on todo-mvp, uses Dagger2 for Dependency Injection',
+        name: 'todo-mvp-dagger - Based on todo-mvp, uses Dagger2 for Dependency Injection.',
         value: 'todo-mvp-dagger'
       }, {
-        name: 'todo-mvp-contentproviders - Based on todo-mvp-loaders, fetches data using Loaders and uses Content Providers',
+        name: 'todo-mvp-rxjava - Based on todo-mvp, uses RxJava for concurrency and data layer abstraction.',
+        value: 'todo-mvp-rxjava'
+      }, {
+        name: 'todo-mvp-contentproviders - Based on todo-mvp-loaders, fetches data using Loaders and uses Content Providers.',
         value: 'todo-mvp-contentproviders'
       }],
       default: 'todo-mvp'
