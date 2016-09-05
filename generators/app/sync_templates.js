@@ -24,10 +24,12 @@ clone("https://github.com/googlesamples/android-architecture", "./tmp")
       checkOutAndCopy(repo, "todo-mvp-dagger")(function(success) {
         checkOutAndCopy(repo, "todo-mvp-loaders")(function(success) {
           checkOutAndCopy(repo, "todo-mvp-clean")(function(success) {
-            checkOutAndCopy(repo, "todo-mvp-contentproviders")(function(success) {
-              checkOutAndCopy(repo, "todo-databinding")(function(success) {
-                rimraf.sync(__dirname + '/tmp')
-                console.log('success is', success);
+            checkOutAndCopy(repo, "todo-mvp-rxjava")(function(success) {
+              checkOutAndCopy(repo, "todo-mvp-contentproviders")(function(success) {
+                checkOutAndCopy(repo, "todo-databinding")(function(success) {
+                  rimraf.sync(__dirname + '/tmp')
+                  console.log('success is', success);
+                });
               });
             });
           });
