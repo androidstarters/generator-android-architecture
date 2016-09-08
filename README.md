@@ -1,7 +1,7 @@
 # generator-android-architecture
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
-> Yeoman generator for googlesamples android-architecture.
-
+> Yeomon generator to create android app using [googlesamples android-architecture](https://github.com/googlesamples/android-architecture).
+  
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-android-architecture using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
@@ -39,8 +39,9 @@ yo android-architecture
   todo-mvp-loaders - Based on todo-mvp, fetches data using Loaders.
   todo-mvp-databinding - Based on todo-mvp, uses the Data Binding Library.
   todo-mvp-clean - Based on todo-mvp, uses concepts from Clean Architecture.
-  todo-mvp-dagger - Based on todo-mvp, uses Dagger2 for Dependency Injection
-  todo-mvp-contentproviders - Based on todo-mvp-loaders, fetches data using Loaders and uses Content Providers
+  todo-mvp-dagger - Based on todo-mvp, uses Dagger2 for Dependency Injection.
+  todo-mvp-rxjava - Based on todo-mvp, uses RxJava for concurrency and data layer abstraction.
+  todo-mvp-contentproviders - Based on todo-mvp-loaders, fetches data using Loaders and uses Content Providers.
 ```
 
 ## Getting To Know Yeoman
