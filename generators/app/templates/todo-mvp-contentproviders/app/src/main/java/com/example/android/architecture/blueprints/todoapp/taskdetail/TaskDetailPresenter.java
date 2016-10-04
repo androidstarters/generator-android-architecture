@@ -26,6 +26,7 @@ import <%= appPackage %>.data.Task;
 import <%= appPackage %>.data.source.LoaderProvider;
 import <%= appPackage %>.data.source.TasksDataSource;
 import <%= appPackage %>.data.source.TasksRepository;
+import com.google.common.base.Strings;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -81,12 +82,16 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter, Loader
 
     @Override
     public void deleteTask() {
+        if (Strings.isNullOrEmpty(mTaskId)) {
+            mTaskDetailView.showMissingTask();
+            return;
+        }
         mTasksRepository.deleteTask(mTaskId);
         mTaskDetailView.showTaskDeleted();
     }
 
     public void completeTask() {
-        if (null == mTask) {
+        if (Strings.isNullOrEmpty(mTaskId)) {
             mTaskDetailView.showMissingTask();
             return;
         }
@@ -96,7 +101,7 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter, Loader
 
     @Override
     public void activateTask() {
-        if (null == mTask) {
+        if (Strings.isNullOrEmpty(mTaskId)) {
             mTaskDetailView.showMissingTask();
             return;
         }
@@ -110,13 +115,13 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter, Loader
         String title = mTask.getTitle();
         String description = mTask.getDescription();
 
-        if (title != null && title.isEmpty()) {
+        if (Strings.isNullOrEmpty(title)) {
             mTaskDetailView.hideTitle();
         } else {
             mTaskDetailView.showTitle(title);
         }
 
-        if (description != null && description.isEmpty()) {
+        if (Strings.isNullOrEmpty(description)) {
             mTaskDetailView.hideDescription();
         } else {
             mTaskDetailView.showDescription(description);
@@ -164,6 +169,6 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter, Loader
 
     @Override
     public void onLoaderReset(Loader<Cursor> loader) {
-
+        // no-op
     }
 }

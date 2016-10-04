@@ -16,8 +16,6 @@
 
 package <%= appPackage %>.taskdetail;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -28,6 +26,9 @@ import <%= appPackage %>.addedittask.domain.usecase.GetTask;
 import <%= appPackage %>.tasks.domain.model.Task;
 import <%= appPackage %>.tasks.domain.usecase.ActivateTask;
 import <%= appPackage %>.tasks.domain.usecase.CompleteTask;
+import com.google.common.base.Strings;
+
+import static com.google.common.base.Preconditions.checkNotNull;
 
 /**
  * Listens to user actions from the UI ({@link TaskDetailFragment}), retrieves the data and updates
@@ -68,7 +69,7 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter {
     }
 
     private void openTask() {
-        if (mTaskId == null || mTaskId.isEmpty()) {
+        if (Strings.isNullOrEmpty(mTaskId)) {
             mTaskDetailView.showMissingTask();
             return;
         }
@@ -102,7 +103,7 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter {
 
     @Override
     public void editTask() {
-        if (mTaskId == null || mTaskId.isEmpty()) {
+        if (Strings.isNullOrEmpty(mTaskId)) {
             mTaskDetailView.showMissingTask();
             return;
         }
@@ -127,7 +128,7 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter {
 
     @Override
     public void completeTask() {
-        if (mTaskId == null || mTaskId.isEmpty()) {
+        if (Strings.isNullOrEmpty(mTaskId)) {
             mTaskDetailView.showMissingTask();
             return;
         }
@@ -148,7 +149,7 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter {
 
     @Override
     public void activateTask() {
-        if (mTaskId == null || mTaskId.isEmpty()) {
+        if (Strings.isNullOrEmpty(mTaskId)) {
             mTaskDetailView.showMissingTask();
             return;
         }
@@ -166,17 +167,17 @@ public class TaskDetailPresenter implements TaskDetailContract.Presenter {
                 });
     }
 
-    private void showTask(Task task) {
+    private void showTask(@NonNull Task task) {
         String title = task.getTitle();
         String description = task.getDescription();
 
-        if (title != null && title.isEmpty()) {
+        if (Strings.isNullOrEmpty(title)) {
             mTaskDetailView.hideTitle();
         } else {
             mTaskDetailView.showTitle(title);
         }
 
-        if (description != null && description.isEmpty()) {
+        if (Strings.isNullOrEmpty(description)) {
             mTaskDetailView.hideDescription();
         } else {
             mTaskDetailView.showDescription(description);

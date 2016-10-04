@@ -16,19 +16,12 @@
 
 package <%= appPackage %>.tasks;
 
-import static org.junit.Assert.assertTrue;
-import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.eq;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
 import <%= appPackage %>.TestUseCaseScheduler;
 import <%= appPackage %>.UseCaseHandler;
-import <%= appPackage %>.tasks.domain.model.Task;
-import <%= appPackage %>.data.source.TasksDataSource
-        .LoadTasksCallback;
+import <%= appPackage %>.data.source.TasksDataSource.LoadTasksCallback;
 import <%= appPackage %>.data.source.TasksRepository;
 import <%= appPackage %>.tasks.domain.filter.FilterFactory;
+import <%= appPackage %>.tasks.domain.model.Task;
 import <%= appPackage %>.tasks.domain.usecase.ActivateTask;
 import <%= appPackage %>.tasks.domain.usecase.ClearCompleteTasks;
 import <%= appPackage %>.tasks.domain.usecase.CompleteTask;
@@ -39,10 +32,18 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.mockito.InOrder;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.List;
+
+import static org.junit.Assert.assertTrue;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.eq;
+import static org.mockito.Mockito.inOrder;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Unit tests for the implementation of {@link TasksPresenter}
@@ -106,9 +107,10 @@ public class TasksPresenterTest {
         mLoadTasksCallbackCaptor.getValue().onTasksLoaded(TASKS);
 
         // Then progress indicator is shown
-        verify(mTasksView).setLoadingIndicator(true);
+        InOrder inOrder = inOrder(mTasksView);
+        inOrder.verify(mTasksView).setLoadingIndicator(true);
         // Then progress indicator is hidden and all tasks are shown in UI
-        verify(mTasksView).setLoadingIndicator(false);
+        inOrder.verify(mTasksView).setLoadingIndicator(false);
         ArgumentCaptor<List> showTasksArgumentCaptor = ArgumentCaptor.forClass(List.class);
         verify(mTasksView).showTasks(showTasksArgumentCaptor.capture());
         assertTrue(showTasksArgumentCaptor.getValue().size() == 3);
