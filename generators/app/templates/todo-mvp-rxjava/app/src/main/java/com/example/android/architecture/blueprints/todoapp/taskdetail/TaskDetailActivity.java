@@ -17,8 +17,6 @@
 package <%= appPackage %>.taskdetail;
 
 import android.os.Bundle;
-import android.support.annotation.VisibleForTesting;
-import android.support.test.espresso.IdlingResource;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -26,7 +24,6 @@ import android.support.v7.widget.Toolbar;
 import <%= appPackage %>.Injection;
 import <%= appPackage %>.R;
 import <%= appPackage %>.util.ActivityUtils;
-import <%= appPackage %>.util.EspressoIdlingResource;
 
 /**
  * Displays task details screen.
@@ -73,10 +70,5 @@ public class TaskDetailActivity extends AppCompatActivity {
     public boolean onSupportNavigateUp() {
         onBackPressed();
         return true;
-    }
-
-    @VisibleForTesting
-    public IdlingResource getCountingIdlingResource() {
-        return EspressoIdlingResource.getIdlingResource();
     }
 }
