@@ -33,6 +33,8 @@ describe('generator-android-mvp-starter:app', function () {
       'app/.gitignore',
       'app/build.gradle',
       'app/proguard-rules.pro',
+      'app/src/main/java/com/sample/mvp/BaseView.java',
+      'app/src/main/java/com/sample/mvp/BasePresenter.java',
       'app/src/main/AndroidManifest.xml'
     ]);
   });
