@@ -1,33 +1,26 @@
 package <%= appPackage %>.data.source;
 
-import android.content.Context;
-
 import <%= appPackage %>.data.FakeTasksRemoteDataSource;
 import <%= appPackage %>.data.source.local.TasksLocalDataSource;
 
 import javax.inject.Singleton;
 
+import dagger.Binds;
 import dagger.Module;
-import dagger.Provides;
 
 /**
  * This is used by Dagger to inject the required arguments into the {@link TasksRepository}.
  */
 @Module
-public class TasksRepositoryModule {
+abstract class TasksRepositoryModule {
 
     @Singleton
-    @Provides
+    @Binds
     @Local
-    TasksDataSource provideTasksLocalDataSource(Context context) {
-        return new TasksLocalDataSource(context);
-    }
+    abstract TasksDataSource provideTasksLocalDataSource(TasksLocalDataSource dataSource);
 
     @Singleton
-    @Provides
+    @Binds
     @Remote
-    TasksDataSource provideTasksRemoteDataSource() {
-        return new FakeTasksRemoteDataSource();
-    }
-
+    abstract TasksDataSource provideTasksRemoteDataSource(FakeTasksRemoteDataSource dataSource);
 }
