@@ -1,7 +1,13 @@
 # generator-android-architecture
 [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > Yeomon generator to create android app using [googlesamples android-architecture](https://github.com/googlesamples/android-architecture).
-  
+
+## Demo
+
+<p align="center">
+  <img src="http://g.recordit.co/Yly1XY0f2n.gif">
+</p>
+
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-android-architecture using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
