@@ -3,7 +3,7 @@ var path = require('path');
 var assert = require('yeoman-assert');
 var helpers = require('yeoman-test');
 
-describe('generator-android-mvp-starter:app', function () {
+describe('generator-android-architecture:app', function () {
   this.timeout(15000);
 
   before(function () {
@@ -33,8 +33,6 @@ describe('generator-android-mvp-starter:app', function () {
       'app/.gitignore',
       'app/build.gradle',
       'app/proguard-rules.pro',
-      'app/src/main/java/com/sample/mvp/BaseView.java',
-      'app/src/main/java/com/sample/mvp/BasePresenter.java',
       'app/src/main/AndroidManifest.xml'
     ]);
   });
