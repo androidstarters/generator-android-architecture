@@ -58,6 +58,9 @@ module.exports = Generator.extend({
       }, {
         name: 'todo-mvp-contentproviders - Based on todo-mvp-loaders, fetches data using Loaders and uses Content Providers.',
         value: 'todo-mvp-contentproviders'
+      }, {
+        name: 'todo-mvvm-databinding - Based on the todo-databinding sample, this version incorporates the Model‑View‑ViewModel pattern.',
+        value: 'todo-mvvm-databinding'
       }],
       default: 'todo-mvp'
     }];

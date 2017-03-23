@@ -27,8 +27,10 @@ clone("https://github.com/googlesamples/android-architecture", "./tmp")
             checkOutAndCopy(repo, "todo-mvp-rxjava")(function(success) {
               checkOutAndCopy(repo, "todo-mvp-contentproviders")(function(success) {
                 checkOutAndCopy(repo, "todo-databinding")(function(success) {
-                  rimraf.sync(__dirname + '/tmp')
-                  console.log('success is', success);
+                  checkOutAndCopy(repo, "todo-mvvm-databinding")(function(success) {
+                    rimraf.sync(__dirname + '/tmp')
+                    console.log('success is', success);
+                  });
                 });
               });
             });
@@ -87,7 +89,7 @@ function replaceAndRename(toggle) {
     if (err) {
       return console.log(err);
     } else {
-      let file = toggle ?  ".gitignore" : "gitignore";
+      let file = toggle ? ".gitignore" : "gitignore";
       return console.log("Renamed root folder " + file);
     }
   });
@@ -96,7 +98,7 @@ function replaceAndRename(toggle) {
     if (err) {
       return console.log(err);
     } else {
-      let file = toggle ?  ".gitignore" : "gitignore";
+      let file = toggle ? ".gitignore" : "gitignore";
       return console.log("Renamed app folder " + file);
     }
   });
