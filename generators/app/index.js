@@ -44,8 +44,8 @@ module.exports = Generator.extend({
         name: 'todo-mvp-loaders - Based on todo-mvp, fetches data using Loaders.',
         value: 'todo-mvp-loaders'
       }, {
-        name: 'todo-mvp-databinding - Based on todo-mvp, uses the Data Binding Library.',
-        value: 'todo-mvp-databinding'
+        name: 'todo-databinding - Based on todo-mvp, uses the Data Binding Library.',
+        value: 'todo-databinding'
       }, {
         name: 'todo-mvp-clean - Based on todo-mvp, uses concepts from Clean Architecture.',
         value: 'todo-mvp-clean'
