@@ -43,7 +43,7 @@ yo android-architecture
 ? Choose architecture from https://github.com/googlesamples/android-architecture? (Use arrow keys)
 ❯ todo-mvp - Basic Model-View-Presenter architecture.
   todo-mvp-loaders - Based on todo-mvp, fetches data using Loaders.
-  todo-mvp-databinding - Based on todo-mvp, uses the Data Binding Library.
+  todo-databinding - Based on todo-mvp, uses the Data Binding Library.
   todo-mvp-clean - Based on todo-mvp, uses concepts from Clean Architecture.
   todo-mvp-dagger - Based on todo-mvp, uses Dagger2 for Dependency Injection.
   todo-mvp-rxjava - Based on todo-mvp, uses RxJava for concurrency and data layer abstraction.
