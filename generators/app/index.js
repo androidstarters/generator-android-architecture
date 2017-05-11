@@ -90,9 +90,9 @@ module.exports = Generator.extend({
     this.fs.copy(this.sourceRoot() + '/' + this.props.architecture + '/gradlew.bat', 'gradlew.bat');
     this.fs.copy(this.sourceRoot() + '/' + this.props.architecture + '/settings.gradle', 'settings.gradle');
     this.fs.copy(this.sourceRoot() + '/' + this.props.architecture + '/app/gitignore', 'app/.gitignore');
-    this.fs.copy(this.sourceRoot() + '/' + this.props.architecture + '/app/proguard-rules.pro', 'app/proguard-rules.pro');
 
-    this.fs.copyTpl(this.sourceRoot() + '/' + this.props.architecture + '/app/build.gradle', 'app/build.gradle');
+    this.fs.copyTpl(this.sourceRoot() + '/' + this.props.architecture + '/app/proguard-rules.pro', 'app/proguard-rules.pro', this.props);
+    this.fs.copyTpl(this.sourceRoot() + '/' + this.props.architecture + '/app/build.gradle', 'app/build.gradle', this.props);
     this.fs.copyTpl(this.sourceRoot() + '/' + this.props.architecture + '/app/src/androidTest/java/com/example/android/architecture/blueprints/todoapp', 'app/src/androidTest/java/' + packageDir, this.props);
     this.fs.copyTpl(this.sourceRoot() + '/' + this.props.architecture + '/app/src/androidTestMock/java/com/example/android/architecture/blueprints/todoapp', 'app/src/androidTestMock/java/' + packageDir, this.props);
     this.fs.copyTpl(this.sourceRoot() + '/' + this.props.architecture + '/app/src/main/java/com/example/android/architecture/blueprints/todoapp', 'app/src/main/java/' + packageDir, this.props);
