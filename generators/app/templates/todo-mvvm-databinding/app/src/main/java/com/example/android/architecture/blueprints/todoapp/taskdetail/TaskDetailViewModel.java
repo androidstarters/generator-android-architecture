@@ -17,6 +17,7 @@
 package <%= appPackage %>.taskdetail;
 
 import android.content.Context;
+import android.support.annotation.Nullable;
 
 import <%= appPackage %>.TaskViewModel;
 import <%= appPackage %>.data.source.TasksRepository;
@@ -29,12 +30,20 @@ import <%= appPackage %>.tasks.TasksFragment;
  */
 public class TaskDetailViewModel extends TaskViewModel {
 
-    private final TaskDetailNavigator mTaskDetailNavigator;
+    @Nullable
+    private TaskDetailNavigator mTaskDetailNavigator;
 
-    public TaskDetailViewModel(Context context, TasksRepository tasksRepository,
-                               TaskDetailNavigator taskDetailNavigator) {
+    public TaskDetailViewModel(Context context, TasksRepository tasksRepository) {
         super(context, tasksRepository);
+    }
+
+    public void setNavigator(TaskDetailNavigator taskDetailNavigator) {
         mTaskDetailNavigator = taskDetailNavigator;
+    }
+
+    public void onActivityDestroyed() {
+        // Clear references to avoid potential memory leaks.
+        mTaskDetailNavigator = null;
     }
 
     /**
@@ -42,10 +51,14 @@ public class TaskDetailViewModel extends TaskViewModel {
      */
     public void deleteTask() {
         super.deleteTask();
-        mTaskDetailNavigator.onTaskDeleted();
+        if (mTaskDetailNavigator != null) {
+            mTaskDetailNavigator.onTaskDeleted();
+        }
     }
 
     public void startEditTask() {
-        mTaskDetailNavigator.onStartEditTask();
+        if (mTaskDetailNavigator != null) {
+            mTaskDetailNavigator.onStartEditTask();
+        }
     }
 }

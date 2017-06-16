@@ -54,6 +54,10 @@ public class TasksFragment extends Fragment {
 
     private TasksFragBinding mTasksFragBinding;
 
+    private TasksAdapter mListAdapter;
+
+    private Observable.OnPropertyChangedCallback mSnackbarCallback;
+
     public TasksFragment() {
         // Requires empty public constructor
     }
@@ -123,6 +127,24 @@ public class TasksFragment extends Fragment {
         setupRefreshLayout();
     }
 
+    @Override
+    public void onDestroy() {
+        mListAdapter.onDestroy();
+        if (mSnackbarCallback != null) {
+            mTasksViewModel.snackbarText.removeOnPropertyChangedCallback(mSnackbarCallback);
+        }
+        super.onDestroy();
+    }
+
+    private void setupSnackbar() {
+        mSnackbarCallback = new Observable.OnPropertyChangedCallback() {
+            @Override
+            public void onPropertyChanged(Observable observable, int i) {
+                SnackbarUtils.showSnackbar(getView(), mTasksViewModel.getSnackbarText());
+            }
+        };
+        mTasksViewModel.snackbarText.addOnPropertyChangedCallback(mSnackbarCallback);
+    }
 
     private void showFilteringPopUpMenu() {
         PopupMenu popup = new PopupMenu(getContext(), getActivity().findViewById(R.id.menu_filter));
@@ -149,16 +171,6 @@ public class TasksFragment extends Fragment {
         popup.show();
     }
 
-    private void setupSnackbar() {
-        mTasksViewModel.snackbarText.addOnPropertyChangedCallback(
-                new Observable.OnPropertyChangedCallback() {
-                    @Override
-                    public void onPropertyChanged(Observable observable, int i) {
-                        SnackbarUtils.showSnackbar(getView(), mTasksViewModel.getSnackbarText());
-                    }
-                });
-    }
-
     private void setupFab() {
         FloatingActionButton fab =
                 (FloatingActionButton) getActivity().findViewById(R.id.fab_add_task);
@@ -175,9 +187,9 @@ public class TasksFragment extends Fragment {
     private void setupListAdapter() {
         ListView listView =  mTasksFragBinding.tasksList;
 
-        TasksAdapter mListAdapter = new TasksAdapter(
+        mListAdapter = new TasksAdapter(
                 new ArrayList<Task>(0),
-                (TaskItemNavigator) getActivity(),
+                (TasksActivity) getActivity(),
                 Injection.provideTasksRepository(getContext().getApplicationContext()),
                 mTasksViewModel);
         listView.setAdapter(mListAdapter);
@@ -197,7 +209,7 @@ public class TasksFragment extends Fragment {
 
     public static class TasksAdapter extends BaseAdapter {
 
-        private final TaskItemNavigator mTaskItemNavigator;
+        @Nullable private TaskItemNavigator mTaskItemNavigator;
 
         private final TasksViewModel mTasksViewModel;
 
@@ -205,7 +217,7 @@ public class TasksFragment extends Fragment {
 
         private TasksRepository mTasksRepository;
 
-        public TasksAdapter(List<Task> tasks, TaskItemNavigator taskItemNavigator,
+        public TasksAdapter(List<Task> tasks, TasksActivity taskItemNavigator,
                             TasksRepository tasksRepository,
                             TasksViewModel tasksViewModel) {
             mTaskItemNavigator = taskItemNavigator;
@@ -213,6 +225,10 @@ public class TasksFragment extends Fragment {
             mTasksViewModel = tasksViewModel;
             setList(tasks);
 
+        }
+
+        public void onDestroy() {
+            mTaskItemNavigator = null;
         }
 
         public void replaceData(List<Task> tasks) {
@@ -251,8 +267,11 @@ public class TasksFragment extends Fragment {
 
             final TaskItemViewModel viewmodel = new TaskItemViewModel(
                     viewGroup.getContext().getApplicationContext(),
-                    mTasksRepository,
-                    mTaskItemNavigator);
+                    mTasksRepository
+            );
+
+            viewmodel.setNavigator(mTaskItemNavigator);
+
             binding.setViewmodel(viewmodel);
             // To save on PropertyChangedCallbacks, wire the item's snackbar text observable to the
             // fragment's.
@@ -267,6 +286,7 @@ public class TasksFragment extends Fragment {
 
             return binding.getRoot();
         }
+
 
         private void setList(List<Task> tasks) {
             mTasks = tasks;

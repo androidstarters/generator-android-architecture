@@ -21,7 +21,6 @@ import android.content.Context;
 import android.content.res.Resources;
 
 import <%= appPackage %>.R;
-import <%= appPackage %>.TaskViewModel;
 import <%= appPackage %>.data.Task;
 import <%= appPackage %>.data.source.TasksDataSource;
 import <%= appPackage %>.data.source.TasksRepository;
@@ -73,7 +72,7 @@ public class TaskDetailViewModelTest {
     @Captor
     private ArgumentCaptor<TasksDataSource.GetTaskCallback> mGetTaskCallbackCaptor;
 
-    private TaskViewModel mTaskDetailViewModel;
+    private TaskDetailViewModel mTaskDetailViewModel;
 
     private Task mTask;
 
@@ -89,7 +88,8 @@ public class TaskDetailViewModelTest {
 
         // Get a reference to the class under test
         mTaskDetailViewModel = new TaskDetailViewModel(
-                mContext, mTasksRepository, mock(TaskDetailNavigator.class));
+                mContext, mTasksRepository);
+        mTaskDetailViewModel.setNavigator(mock(TaskDetailActivity.class));
     }
 
     private void setupContext() {

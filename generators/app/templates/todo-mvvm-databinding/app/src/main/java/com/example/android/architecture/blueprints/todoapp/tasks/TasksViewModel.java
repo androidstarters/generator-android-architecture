@@ -37,8 +37,6 @@ import <%= appPackage %>.util.EspressoIdlingResource;
 import java.util.ArrayList;
 import java.util.List;
 
-import static <%= appPackage %>.tasks.TasksFilterType.ALL_TASKS;
-
 /**
  * Exposes the data to be used in the task list screen.
  * <p>
@@ -67,31 +65,33 @@ public class TasksViewModel extends BaseObservable {
 
     private final TasksRepository mTasksRepository;
 
-    private final TasksNavigator mNavigator;
-
     private final ObservableBoolean mIsDataLoadingError = new ObservableBoolean(false);
 
     private Context mContext; // To avoid leaks, this must be an Application Context.
 
+    private TasksNavigator mNavigator;
+
     public TasksViewModel(
             TasksRepository repository,
-            Context context,
-            TasksNavigator navigator) {
+            Context context) {
         mContext = context.getApplicationContext(); // Force use of Application Context.
         mTasksRepository = repository;
-        mNavigator = navigator;
 
         // Set initial state
         setFiltering(TasksFilterType.ALL_TASKS);
     }
 
-    public void start() {
-        loadTasks(false);
+    void setNavigator(TasksNavigator navigator) {
+        mNavigator = navigator;
     }
 
-    @Bindable
-    public boolean getTasksAddViewVisible() {
-        return mCurrentFiltering == ALL_TASKS;
+    void onActivityDestroyed() {
+        // Clear references to avoid potential memory leaks.
+        mNavigator = null;
+    }
+
+    public void start() {
+        loadTasks(false);
     }
 
     @Bindable
@@ -153,7 +153,9 @@ public class TasksViewModel extends BaseObservable {
      * Called by the Data Binding library and the FAB's click listener.
      */
     public void addNewTask() {
-        mNavigator.addNewTask();
+        if (mNavigator != null) {
+            mNavigator.addNewTask();
+        }
     }
 
     void handleActivityResult(int requestCode, int resultCode) {
